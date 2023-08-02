@@ -11,8 +11,7 @@ const School = function(school){
 // school 인서트
 School.insert = (newSchool, result)=>{
     sql.query("INSERT INTO school SET ?", newSchool, (err, res)=>{
-
-        if(err){
+        if(err) {
             console.log("error: ", err);
             result(err, null);
             return;
