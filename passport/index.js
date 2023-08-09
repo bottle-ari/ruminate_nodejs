@@ -3,6 +3,8 @@ const KakaoStrategy = require('passport-kakao').Strategy;
 const { User } = require('../app/models/User');
 
 module.exports = (app) => {
+    
+    console.log("카카오 exports")
 
     // code20230802182219
     app.use(require('express-session')({
