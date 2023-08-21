@@ -83,7 +83,6 @@ router.get('/jwt_token',(req,res) => {
  * 3. body
  */
 router.get('/verify_token', async(req, res) => {
-    const { authorization } = req.headers;
     // if req contains cookies -> verify
     var token;
     try {
