@@ -1,0 +1,13 @@
+# 34.64.63.147
+IP_ADDRESS=localhost
+PORT=443
+
+KAKAO_ID=a72440e4af5835f9c18ab4096ed39929
+
+GOOGLE_CLIENT_ID = 45608429421-h23ldoj9ugaeme5d85scbth08c6c1pe6.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET = 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
+
+JWT_SECRET_KEY = this_is_password_jwt
+
+NAVER_ID=ySH9pgSupoBrykmZ37od
+NAVER_SECRET=YyHlwcdqDd

@@ -1,9 +1,9 @@
 require("dotenv").config();
 
-const KAKAO_URL = 'http://'+process.env.IP_ADDRESS+':'+process.env.PORT+'/auth/kakao/callback'
-const NAVER_URL = 'http://'+process.env.IP_ADDRESS+':'+process.env.PORT+'/auth/naver_login/callback'
-const GOOGLE_LOGIN_URL = 'http://'+process.env.IP_ADDRESS+':'+process.env.PORT+'/google_login/'
-const GOOGLE_REDIRECT_URI = 'http://'+process.env.IP_ADDRESS+':'+process.env.PORT+'/google_login/redirect'; 
+const KAKAO_URL = 'https://'+process.env.IP_ADDRESS+':'+process.env.PORT+'/auth/kakao/callback'
+const NAVER_URL = 'https://'+process.env.IP_ADDRESS+':'+process.env.PORT+'/auth/naver_login/callback'
+const GOOGLE_LOGIN_URL = 'https://'+process.env.IP_ADDRESS+':'+process.env.PORT+'/google_login/'
+const GOOGLE_REDIRECT_URI = 'https://'+process.env.IP_ADDRESS+':'+process.env.PORT+'/google_login/redirect'; 
 const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token'; 
 const GOOGLE_USERINFO_URL = 'https://www.googleapis.com/oauth2/v2/userinfo'; 
 

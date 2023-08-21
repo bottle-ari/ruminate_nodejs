@@ -5,12 +5,13 @@ const {KAKAO_URL,
     GOOGLE_REDIRECT_URI,
     GOOGLE_TOKEN_URL,
     GOOGLE_USERINFO_URL} = require('./config.js');
-const axios = require('axios');
+
 
 // ---------------------------------------------
 // fs and https 모듈 가져오기
 const https = require("https");
 const fs = require("fs");
+
 
 const options = {
     key: fs.readFileSync("./config/cert.key"),
@@ -69,14 +70,22 @@ passportConfigNaver();
 
 
 // passportConfig(); // 네이버 로그인은 app인자 X
-const userRouter = require('./app/routes/user');
-app.use('/auth', [userRouter]);
+const kakaoRouter = require('./app/routes/kakao_routes');
+app.use('/auth', [kakaoRouter]);
 
 
 // 네이버 router
 const naverUserRouter = require('./app/routes/naver_auth');
 app.use('/auth',[naverUserRouter])
 
+
+// 구글 router
+const googleUserRouter = require('./app/routes/google_auth');
+app.use('/',[googleUserRouter])
+
+// 계정 처리 라우터
+const accountRouter = require('./app/routes/account.routes');
+app.use('/',[accountRouter])
 
 // ---------------------------------------------------------------------------
 // 구글
@@ -107,38 +116,3 @@ app.use('/auth',[naverUserRouter])
 // res.send('ok'); 
 // }); 
 
-// 회원가입 라우터 
-app.get('/google_login', (req, res) => {
-    let url = 'https://accounts.google.com/o/oauth2/v2/auth'; 
-    url += `?client_id=${process.env.GOOGLE_CLIENT_ID}` 
-    url += `&redirect_uri=${GOOGLE_REDIRECT_URI}` 
-    url += '&response_type=code' 
-    url += '&scope=email profile' 
-    res.redirect(url); 
-    }); 
-
-app.get('/google_login/redirect', async (req, res) => {
-    const { code } = req.query;
-    console.log(`code: ${code}`);
-
-        // access_token, refresh_token 등의 구글 토큰 정보 가져오기
-    const resp = await axios.post(GOOGLE_TOKEN_URL, {
-        // x-www-form-urlencoded(body)
-            code,
-        client_id: process.env.GOOGLE_CLIENT_ID,
-        client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        redirect_uri: GOOGLE_REDIRECT_URI,
-        grant_type: 'authorization_code',
-    });
-
-        // email, google id 등의 사용자 구글 계정 정보 가져오기
-    const resp2 = await axios.get(GOOGLE_USERINFO_URL, {
-            // Request Header에 Authorization 추가
-        headers: {
-            Authorization: `Bearer ${resp.data.access_token}`,
-        },
-    });
-    
-        // 구글 인증 서버에서 json 형태로 반환 받은 body 클라이언트에 반환
-    res.json(resp2.data);
-});

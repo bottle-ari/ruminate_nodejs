@@ -1,0 +1,25 @@
+
+SECRET_KEY = "our_secret"
+
+
+const jwt = require('jsonwebtoken');
+
+
+// make token
+const token = jwt.sign({ email: "choi0415@hongkis.com" , age:"25"}, SECRET_KEY,
+{ expiresIn: "1h",});
+console.log(token);
+
+
+// check token
+const verified = jwt.verify(token, SECRET_KEY);
+// get decode data
+// const decoded = jwt.decode(token);
+
+// verified -> email / iat (unix time stamp when token made) / exp
+console.log("verified : "+verified);
+console.log("email : "+verified['email']);
+console.log("age : "+verified['age']);
+
+// console.log("decoded : "+decoded);
+
