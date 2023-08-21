@@ -47,7 +47,7 @@ router.get('/google_login/redirect', async (req, res) => {
     });
 
     var e_id = 0
-    await account_controller.getOrMakeDBIdBySnsId({snsId:resp2.data.id, snsInfo:"google"},()=>{console.log("callback...???")})
+    await account_controller.getOrMakeDBIdBySnsId({snsId:resp2.data.id, snsInfo:"google",email: resp2.data.email},()=>{console.log("callback...???")})
         .then(rs=>{
             e_id = rs
         }).catch(err=>{

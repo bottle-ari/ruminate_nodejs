@@ -23,12 +23,12 @@ function make_token(id,email) {
  */
 async function get_token_in_req_and_verify(req){
     return new Promise(async(resolve,reject)=>{
-        const { authorization } = req.headers;
+        const { authorization } = req.headers; // verfiy by headers
         if (req.cookies && req.cookies.JWT_TOKEN_TODO) { // req.cookies not none and req.cookies contains JWT_TOKEN_TODO
             token = req.cookies.JWT_TOKEN_TODO
         } else if (authorization != undefined) { // authorization not null
             token = authorization.split(' ')[1]; // index 0 : 'Bearer' | index 1 : token string
-        } else { // token in body
+        } else { // verify token by req.body
             token = req.body.token
         }
         if (!token) {

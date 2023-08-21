@@ -11,6 +11,7 @@ exports.getOrMakeDBIdBySnsId = async function getOrMakeDBIdBySnsId(data) {
         try {
             const snsId = data.snsId
             const snsInfo = data.snsInfo
+            const email = data.email
             var e_id = 0
             e_id = await account_model.Account.findBySnsIdAndSnsInfo({snsId:snsId, snsInfo:snsInfo},
             ()=>{console.log("바깥 findbysns 콜백테스트")})
@@ -29,7 +30,7 @@ exports.getOrMakeDBIdBySnsId = async function getOrMakeDBIdBySnsId(data) {
                 console.log("신규 회원 가입 시작..")
                 await account_model.Account.create({snsInfo: "google",
                     sns_id: snsId,
-                    email: "test_email_new_make@gmail.com"}).then(result1=>{
+                    email: email}).then(result1=>{
                         // console.log("여기에서 res에서 새로운 id(pkey로 사용할)의 정보가 포함되어있으면 됨\n"+
                         // "parse로 OkPacket -> JSON 파싱");
                         const js = JSON.parse(JSON.stringify(result1))
