@@ -47,15 +47,15 @@ require("./app/routes/school.routes.js")(app);
 // 네이버 로그인
 // require("./app/routes/naver_auth.js");
 
-https.createServer(options, app).listen(process.env.PORT, () => {
+const server = https.createServer(options, app).listen(process.env.PORT, () => {
     console.log(`HTTPS server started on port ${process.env.PORT}`);
   });
 
 
 // 포트넘버 설정
-app.listen(8080, ()=>{
-    console.log("Server is running on port 8080.");
-})
+// server.listen(443, ()=>{
+//     console.log("Server is running on port 8080.");
+// })
 
 
 
