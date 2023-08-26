@@ -46,7 +46,6 @@ async function get_token_in_req_and_verify(req){
 
 async function verify_token(token){
     // check token
-    // code20230814195800
     const decodedData = await decodeToken(token).then(decodedData=>{
         console.log("토큰 검증 완료 : 복호화된 데이터 -> ");
         console.log(decodedData)
@@ -57,11 +56,6 @@ async function verify_token(token){
         return false
       });
     return decodedData;
-    // verified -> email / iat (unix time stamp when token made) / exp
-    // console.log("verified : "+verified);
-    // console.log("토큰 검증 완료?")
-    // console.log("email : "+verified['email']);
-    // console.log("age : "+verified['age']);
 }
 
 

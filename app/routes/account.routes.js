@@ -20,7 +20,6 @@ router.get('/account',async(req,res)=> {
         return;
     }
 
-    // code20230819161931
     const {where,values} = query_utils.convertQueryStringToWhere(req.query)
     const sql_str = `select * from Account ${where}`
     const data = await Account.query(sql_str,values).then(rt=>{return rt}).catch(e=>{console.log(e)});
@@ -68,7 +67,7 @@ router.put("/account",async(req,res)=>{
 // req의 id 키에 DB에 존재하는 id
 router.get('/jwt_token',(req,res) => {
     console.log("디버깅을 위한 토큰 강제 발급")
-    var new_token = token_manager.make_token(req.id,"test_token_email@naver.com"); // code20230811171308
+    var new_token = token_manager.make_token(req.id,"test_token_email@naver.com");
     console.log("토큰 return 값 :"+new_token)
     res.cookie("JWT_TOKEN_TODO",new_token);
     res.json(new_token)

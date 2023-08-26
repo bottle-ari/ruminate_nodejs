@@ -25,11 +25,11 @@ module.exports = (app) => {
         // profile: 카카오가 보내준 유저 정보. profile의 정보를 바탕으로 회원가입
         async (accessToken, refreshToken, profile, done) => {
             try {
-                // code20230729235927
                 const exUser = await User.findOne({
                     // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
                     where: { snsId: profile.id, /*providerType: 'kakao'*/ },
                 },(a,b)=>{
+                    // 콜백함수 공부하느라 걍 아무거나 테스트로 넣은거라 신경 안써도 됨!! 
                     console.log("exUser의 콜백함수 호출");
                     return b;
                 });

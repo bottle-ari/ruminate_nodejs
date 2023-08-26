@@ -52,7 +52,7 @@ router.get('/google_login/redirect', async (req, res) => {
     
     // 구글 인증 서버에서 json 형태로 반환 받은 body 클라이언트에 반환
     //code20230811165142
-    new_token = token_manager.make_token(resp2.id,resp2.email); // code20230811171308
+    new_token = token_manager.make_token(resp2.id,resp2.email); 
     console.log("토큰 return 값 :"+new_token)
     res.cookie("JWT_TOKEN_TODO",new_token);
     res.json(resp2.data);
